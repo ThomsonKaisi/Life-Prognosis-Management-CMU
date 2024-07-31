@@ -39,7 +39,7 @@ private boolean verifyPassword(String hashedPassword){
 //Hashing password
 private String hashPassword(String plainPassword){
 try{
-ProcessBuilder builder = new ProcessBuilder("./BashScripts/hashpassword.sh");
+ProcessBuilder builder = new ProcessBuilder("./BashScripts/read_emails.sh");
 Process process = builder.start();
 
 
