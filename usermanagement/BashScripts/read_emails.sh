@@ -1,7 +1,4 @@
 #!/bin/bash
-
-# Read the CSV file and extract the email column (assuming it's the first column)
-emails=($(awk -F, '{print $1}' email.csv))
-
-# Print the array of emails
+read_info=$(awk -F, '{print $1}' email.csv)
+emails=($read_info)
 echo "${emails[@]}"
