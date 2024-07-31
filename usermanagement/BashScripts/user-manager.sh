@@ -23,7 +23,7 @@ complete_registration(){
   local uuid=$1
   local email=$(grep "$uuid" $USER_STORE | cut -d',' -f1)
   if [ -z "$email" ]; then
-    echo "Invalid UUID"
+    echo "No account found, contact administrator"
     exit 1
   fi
   echo "Enter First Name:"
