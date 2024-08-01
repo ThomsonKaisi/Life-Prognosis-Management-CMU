@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.time.LocalDate;
 
@@ -112,9 +113,19 @@ public boolean verifyUUID(String uuid){
     }
     return false;
 }
-public boolean createNewPassword(String password){
+public void createNewPassword(String password,String email){
     String hashed_password =computePasswordHash(password);
-    
+    ProcessBuilder builder = new ProcessBuilder("./BashScripts/create_credentials.sh");
+        try{
+            Process process = builder.start();
+            OutputStream os = process.getOutputStream();
+            PrintWriter writer = new PrintWriter(os);
+            writer.println(email);
+            writer.println(hashed_password);
+        }catch(Exception e){
+
+        }
+
     
 
 }
