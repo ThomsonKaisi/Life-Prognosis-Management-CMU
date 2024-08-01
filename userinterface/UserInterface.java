@@ -12,14 +12,15 @@ public class UserInterface {
     int dateOfBirth = getDateOfBirth(scanner);
     LocalDate birthDate = LocalDate.of(yearOfBirth, monthOfBirth, dateOfBirth);//Date of Birth
     String hivStatus = getHIVStatus(scanner);//HIV Status
-    
+    boolean artBool;
+    boolean hivBool;
 
     if (hivStatus.equals("yes") || hivStatus.equals("y")) {
 
         int yearOfDiagnosis = getYearOfDiagnosis(scanner);
         int monthOfDiagnosis = getMonthOfDiagnosis(scanner);
         int dateOfDiagnosis = getDateOfDiagnosis(scanner);
-        boolean hivBool = True;
+        hivBool = true;
         String artStatus = getARTStatus(scanner);//ART Status
         LocalDate diagnosisDate = LocalDate.of(yearOfDiagnosis, monthOfDiagnosis, dateOfDiagnosis);//Date of Diagnosis
 
@@ -27,15 +28,15 @@ public class UserInterface {
             int yearOfTherapy = getYearOfTherapy(scanner);
             int monthOfTherapy = getMonthOfTherapy(scanner);
             int dateOfTherapy = getDateOfTherapy(scanner);
-            boolean artBool = True;
+            artBool = true;
             LocalDate therapyDate = LocalDate.of(yearOfTherapy, monthOfTherapy, dateOfTherapy);//Date of Therapy
         } else if (artStatus.equals("no") || artStatus.equals("n")) {
-            boolean artBool = False;
+            artBool = false;
         } else {
             System.out.println("Invalid input: Please enter yes or no.");
         }
-    } else if (hivStatus.equals("no") || hivStatus.equals("n")) {
-        boolean hivBool = False;
+    }else if (hivStatus.equals("no") || hivStatus.equals("n")) {
+        hivBool = false;
     } else {
         System.out.println("Invalid input: Please enter yes or no.");
     }
