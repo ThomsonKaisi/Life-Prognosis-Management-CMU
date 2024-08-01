@@ -1,6 +1,6 @@
 package usermanagement;
 
-import java.util.LocalDate;
+import java.time.LocalDate;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
@@ -37,7 +37,7 @@ public class Patient extends User {
         return diagnosisDate;
     }
 
-    public void setDiagnosisDate(Date diagnosisDate) {
+    public void setDiagnosisDate(LocalDate diagnosisDate) {
         this.diagnosisDate = diagnosisDate;
     }
 
