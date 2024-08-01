@@ -1,49 +1,76 @@
 package userinterface;
-import java.util.Scanner;      // For reading user input
-import java.time.LocalDate; 
+
+import java.util.Scanner;
+import java.time.LocalDate;
 import usermanagement.Patient;
 
 public class UserInterface {
-    Scanner scanner = new Scanner(System.in);
-    String firstName = getFirstName(scanner);// FirstName
-    String lastName = getLastName(scanner);  // Last Name
-    int yearOfBirth = getYearOfBirth(scanner);
-    int monthOfBirth = getMonthOfBirth(scanner);
-    int dateOfBirth = getDateOfBirth(scanner);
-    LocalDate birthDate = LocalDate.of(yearOfBirth, monthOfBirth, dateOfBirth);//Date of Birth
-    String hivStatus = getHIVStatus(scanner);//HIV Status
-    boolean artBool;
-    boolean hivBool;
+    private Scanner scanner;
+    private String firstName;
+    private String lastName;
+    private int yearOfBirth;
+    private int monthOfBirth;
+    private int dateOfBirth;
+    private LocalDate birthDate;
+    private String hivStatus;
+    private boolean artBool;
+    private boolean hivBool;
+    private String countryOfResidence;
+    private LocalDate diagnosisDate;
+    private LocalDate therapyDate;
 
-    if (hivStatus.equals("yes") || hivStatus.equals("y")) {
+    public UserInterface() {
+        scanner = new Scanner(System.in);
 
-        int yearOfDiagnosis = getYearOfDiagnosis(scanner);
-        int monthOfDiagnosis = getMonthOfDiagnosis(scanner);
-        int dateOfDiagnosis = getDateOfDiagnosis(scanner);
-        hivBool = true;
-        String artStatus = getARTStatus(scanner);//ART Status
-        LocalDate diagnosisDate = LocalDate.of(yearOfDiagnosis, monthOfDiagnosis, dateOfDiagnosis);//Date of Diagnosis
+        firstName = getFirstName(scanner); // FirstName
+        lastName = getLastName(scanner); // Last Name
+        yearOfBirth = getYearOfBirth(scanner);
+        scanner.nextLine();
+        monthOfBirth = getMonthOfBirth(scanner);
+        scanner.nextLine();
+        dateOfBirth = getDateOfBirth(scanner);
+        scanner.nextLine();
+        birthDate = LocalDate.of(yearOfBirth, monthOfBirth, dateOfBirth);// Date of Birth
 
-        if (artStatus.equals("yes") || artStatus.equals("y")) {
-            int yearOfTherapy = getYearOfTherapy(scanner);
-            int monthOfTherapy = getMonthOfTherapy(scanner);
-            int dateOfTherapy = getDateOfTherapy(scanner);
-            artBool = true;
-            LocalDate therapyDate = LocalDate.of(yearOfTherapy, monthOfTherapy, dateOfTherapy);//Date of Therapy
-        } else if (artStatus.equals("no") || artStatus.equals("n")) {
-            artBool = false;
+        hivStatus = getHIVStatus(scanner); // HIV Status
+
+        if (hivStatus.equals("yes") || hivStatus.equals("y")) {
+            int yearOfDiagnosis = getYearOfDiagnosis(scanner);
+            int monthOfDiagnosis = getMonthOfDiagnosis(scanner);
+            int dateOfDiagnosis = getDateOfDiagnosis(scanner);
+            hivBool = true;
+            String artStatus = getARTStatus(scanner); // ART Status
+            diagnosisDate = LocalDate.of(yearOfDiagnosis, monthOfDiagnosis, dateOfDiagnosis); // Date of Diagnosis
+
+            if (artStatus.equals("yes") || artStatus.equals("y")) {
+                int yearOfTherapy = getYearOfTherapy(scanner);
+                int monthOfTherapy = getMonthOfTherapy(scanner);
+                int dateOfTherapy = getDateOfTherapy(scanner);
+                artBool = true;
+                therapyDate = LocalDate.of(yearOfTherapy, monthOfTherapy, dateOfTherapy); // Date of Therapy
+            } else if (artStatus.equals("no") || artStatus.equals("n")) {
+                artBool = false;
+            } else {
+                System.out.println("Invalid input: Please enter yes or no.");
+            }
+        } else if (hivStatus.equals("no") || hivStatus.equals("n")) {
+            hivBool = false;
         } else {
             System.out.println("Invalid input: Please enter yes or no.");
         }
-    }else if (hivStatus.equals("no") || hivStatus.equals("n")) {
-        hivBool = false;
-    } else {
-        System.out.println("Invalid input: Please enter yes or no.");
+
+        countryOfResidence = getCountryOfResidence(scanner); // Country of residence
+
+        Patient patient = new Patient();
+        patient.completeRegistration(firstName, lastName, birthDate, hivBool, artBool, diagnosisDate, therapyDate, countryOfResidence);
+        scanner.close();
     }
 
+
+
     private static String getFirstName(Scanner scanner) {
-    System.out.print("Please enter your first name: ");
-    return scanner.nextLine();
+        System.out.print("Please enter your first name: ");
+        return scanner.nextLine();
     }
 
     private static String getLastName(Scanner scanner) {
@@ -68,7 +95,7 @@ public class UserInterface {
 
     private static String getHIVStatus(Scanner scanner) {
         System.out.print("Are you HIV positive? (yes or no): ");
-        return scanner.next().trim().toLowerCase();
+        return scanner.nextLine().trim().toLowerCase();
     }
 
     private static int getYearOfDiagnosis(Scanner scanner) {
@@ -107,14 +134,10 @@ public class UserInterface {
     }
 
     private static String getCountryOfResidence(Scanner scanner) {
+
         System.out.print("What is your country of residence? ");
         return scanner.nextLine();
     }
-    String countryOfResidence = getCountryOfResidence(scanner);//Country of residence
-    scanner.close();
 
-    Patient patient = new Patient();
-    patient.completeRegistration(firstName, lastName, birthDate, hivBool, artBool, diagnosisDate, therapyDate, countryOfResidence);
-    
+
 }
-
