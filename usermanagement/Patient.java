@@ -6,22 +6,22 @@ import java.io.PrintWriter;
 
 
 public class Patient extends User {
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private boolean hivPositive;
-    private Date diagnosisDate;
+    private LocalDate diagnosisDate;
     private boolean onART;
-    private Date artStartDate;
+    private LocalDate artStartDate;
     private String country;
 
     public Patient(){
        
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -33,7 +33,7 @@ public class Patient extends User {
         this.hivPositive = hivPositive;
     }
 
-    public Date getDiagnosisDate() {
+    public LocalDate getDiagnosisDate() {
         return diagnosisDate;
     }
 
@@ -49,11 +49,11 @@ public class Patient extends User {
         this.onART = onART;
     }
 
-    public Date getArtStartDate() {
+    public LocalDate getArtStartDate() {
         return artStartDate;
     }
 
-    public void setArtStartDate(Date artStartDate) {
+    public void setArtStartDate(LocalDate artStartDate) {
         this.artStartDate = artStartDate;
     }
 
@@ -65,12 +65,7 @@ public class Patient extends User {
         this.country = country;
     }
 
-    @Override
-    public void login(String email, String password) {
-
-    }
-
-    public void completeRegistration(String first,String lastname, LocalDate birthDate, Boolean isHiv,Boolean isOnART,LocalDateDate diagnosisDate,LocalDate artStartDate,String country) {
+        public void completeRegistration(String first,String lastname, LocalDate birthDate, Boolean isHiv,Boolean isOnART,LocalDate diagnosisDate,LocalDate artStartDate,String country) {
 
         ProcessBuilder builder = new ProcessBuilder("./BashScripts/add_user_data.sh");
         try{
