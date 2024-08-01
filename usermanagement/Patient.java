@@ -1,6 +1,6 @@
 package usermanagement;
 
-import java.util.Date;
+import java.util.LocalDate;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
@@ -70,7 +70,7 @@ public class Patient extends User {
 
     }
 
-    public void completeRegistration(String first,String lastname, LocalDate birthDate, Boolean isHiv,Boolean isOnART,Date diagnosisDate,Date artStartDate,String country) {
+    public void completeRegistration(String first,String lastname, LocalDate birthDate, Boolean isHiv,Boolean isOnART,LocalDateDate diagnosisDate,LocalDate artStartDate,String country) {
 
         ProcessBuilder builder = new ProcessBuilder("./BashScripts/add_user_data.sh");
         try{
