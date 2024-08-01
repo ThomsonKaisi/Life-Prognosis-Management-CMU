@@ -129,4 +129,17 @@ public void createNewPassword(String password,String email){
     
 
 }
+public boolean changePassword(int count,String password,String email){
+    //checking if it is the first time for user to set password for the account
+    if(count ==0){
+        createNewPassword(password,email);
+        return true;
+    }else{
+        //generating otp
+
+        //sendotp
+
+    }
+    return false;
+}
 }

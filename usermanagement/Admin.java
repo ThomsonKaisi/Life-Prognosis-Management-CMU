@@ -27,7 +27,7 @@ public class Admin extends User{
             os.flush();
             os.close();
         }catch(Exception e){
-
+            System.out.println("An Error: "+e.toString());
         }
       
 

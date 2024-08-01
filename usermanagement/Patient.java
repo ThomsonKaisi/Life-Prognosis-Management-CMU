@@ -1,6 +1,9 @@
 package usermanagement;
 
 import java.util.Date;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+
 
 public class Patient extends User {
     private Date dateOfBirth;
@@ -10,8 +13,8 @@ public class Patient extends User {
     private Date artStartDate;
     private String country;
 
-    public Patient(String firstName, String lastName, String email, String password){
-        super(firstName, lastName, email, password);
+    public Patient(){
+       
     }
 
     public Date getDateOfBirth() {
@@ -67,7 +70,26 @@ public class Patient extends User {
 
     }
 
-    public void completeRegistration(String uuid) {
+    public void completeRegistration(String first,String lastname,Boolean isHiv,Boolean isOnART,Date diagnosisDate,Date artStartDate,String country) {
 
+        ProcessBuilder builder = new ProcessBuilder("./BashScripts/add_user_data.sh");
+        try{
+            Process process = builder.start();
+            OutputStream os = process.getOutputStream();
+            PrintWriter writer = new PrintWriter(os);
+            writer.println(this.email);
+            writer.println(first);
+            writer.println(lastname);
+            writer.println(isHiv);
+            writer.println(isOnART);
+            writer.println(diagnosisDate);
+            writer.println(artStartDate);
+            writer.println(country);
+            writer.flush();
+            writer.close();
+        }catch(Exception e){
+            System.out.println("An Error: "+e.toString());
+        }
+      
     }
 }
