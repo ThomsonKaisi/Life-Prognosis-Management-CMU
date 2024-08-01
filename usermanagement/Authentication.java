@@ -14,10 +14,9 @@ public class Authentication {
 Authentication(){
 
 }
-public Boolean logIn(String password,String email){
-if(verifyEmail(email) && verifyPassword(password, email)){
-    this.date = LocalDate.now(); 
- return true;
+public Boolean logIn(String email){
+if(verifyEmail(email)){
+   return verifyPassword(email);
 }
 return false;
 
@@ -42,11 +41,10 @@ return false;
 }
 
 //Verifying password
-private boolean verifyPassword(String password,String email){
+private boolean verifyPassword(String email){
 
     //Creating a process to communicate with email/password file
     String read_line;
-    String hash_password =computePasswordHash(password);
 
     ProcessBuilder builder = new ProcessBuilder("./BashScripts/read_credentials.sh");
     try{
@@ -58,14 +56,8 @@ private boolean verifyPassword(String password,String email){
     InputStreamReader inputStream = new InputStreamReader(process.getInputStream());
     BufferedReader bufferedReader = new BufferedReader(inputStream);
     read_line=bufferedReader.readLine();
-    if(read_line.equals("null")){
-        return false;
-    }else{
-        if(hash_password.equals(read_line)){
-            return true;
-        }
-    }
-
+    boolean state = Boolean.parseBoolean(read_line); 
+    return state;
     }catch(Exception e){
 
     }

@@ -1,5 +1,4 @@
 package usermanagement;
-import java.io.BufferedOutputStream;
 import java.io.OutputStream;
 public class Admin extends User{
     public Admin(String firstName, String lastName, String email, String password) {
@@ -13,7 +12,9 @@ public class Admin extends User{
 
     public void createAccount(String patientEmail){}
 
-    public void downloadUserData(){}
+    public void downloadUserData(){
+     
+    }
 
     public void downloadAnalyticsData(){}
 
