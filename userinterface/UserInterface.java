@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import usermanagement.Patient;
 
 public class UserInterface {
+    Scanner scanner = new Scanner(System.in);
     String firstName = getFirstName(scanner);// FirstName
     String lastName = getLastName(scanner);  // Last Name
     int yearOfBirth = getYearOfBirth(scanner);
