@@ -6,7 +6,7 @@ COUNTRY_CODES="life-expectancy.csv"
 # Create account
 create_account(){
   local email=$1
-  local uuid=$(uuidgen)
+  local password=$(uuidgen)
   echo "$email,$uuid" >> $USER_STORE
   echo "Account created for $email. UUID: $uuid"
 }
@@ -20,7 +20,7 @@ get_iso_code(){
 
 # Complete registration
 complete_registration(){
-  local uuid=$1
+  local password=$1
   local email=$(grep "$uuid" $USER_STORE | cut -d',' -f1)
   if [ -z "$email" ]; then
     echo "No account found, contact administrator"

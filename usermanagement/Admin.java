@@ -1,8 +1,21 @@
 package usermanagement;
 import java.io.BufferedOutputStream;
 import java.io.OutputStream;
-public class Admin {
-    
+public class Admin extends User{
+    public Admin(String firstName, String lastName, String email, String password) {
+        super(firstName, lastName, email, password);
+    }
+
+    @Override
+    public void login(String email, String password) {
+
+    }
+
+    public void createAccount(String patientEmail){}
+
+    public void downloadUserData(){}
+
+    public void downloadAnalyticsData(){}
 
     public void registerUser(String email){
 
