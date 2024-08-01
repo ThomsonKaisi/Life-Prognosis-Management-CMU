@@ -112,4 +112,10 @@ public boolean verifyUUID(String uuid){
     }
     return false;
 }
+public boolean createNewPassword(String password){
+    String hashed_password =computePasswordHash(password);
+    
+    
+
+}
 }
